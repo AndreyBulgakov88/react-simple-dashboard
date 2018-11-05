@@ -7,13 +7,26 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      username: '',
+      password: ''
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  handleSubmit() {
+    this.props.dispatch(actions.loginUser(this.state.username, this.state.password));
+  }
 
-    this.props.dispatch(actions.loginUser());
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value});
+  }
+
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value});
   }
 
   render() {
@@ -27,11 +40,25 @@ class Login extends Component {
           <form name="form" onSubmit={this.handleSubmit}>
               <div className="form-group">
                   <label htmlFor="username">Username: </label>
-                  <input type="text" className="form-control" name="username" required />
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    name="username" 
+                    value={this.state.username} 
+                    onChange={this.handleUsernameChange}
+                    required 
+                  />
               </div>
               <div className="form-group">
                   <label htmlFor="password">Password: </label>
-                  <input type="password" className="form-control" name="password" required />
+                  <input 
+                    type="password" 
+                    className="form-control" 
+                    name="password" 
+                    value={this.state.password} 
+                    onChange={this.handlePasswordChange}
+                    required 
+                  />
               </div>
               <div className="form-group">
                   <button className="btn btn-primary">Login</button>

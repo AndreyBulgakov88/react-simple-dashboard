@@ -1,8 +1,8 @@
 import * as types from './actionTypes';
 
-export function loginUser() {
+export function loginUser(username, password) {
   return dispatch => {  
-    localStorage.setItem('token', 'fake-token');
+    localStorage.setItem('token', username + '_' + password);
     dispatch({ type: types.AUTH_USER });
   }
 }
