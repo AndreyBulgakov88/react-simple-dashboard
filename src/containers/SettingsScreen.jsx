@@ -16,8 +16,6 @@ class SettingsScreen extends Component {
       aboutEdit: this.props.activeUser === undefined ? '' : this.props.activeUser.about
     }
 
-    this.nextUserId = this.props.nextUserId;
-
     this.handleSubmitCreate = this.handleSubmitCreate.bind(this);
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
     this.handleNameCreateChange = this.handleNameCreateChange.bind(this);
@@ -45,7 +43,7 @@ class SettingsScreen extends Component {
   handleSubmitCreate(e) {
     e.preventDefault();
 
-    this.props.dispatch(usersActions.createUser({id: this.nextUserId++, name: this.state.nameCreate, about: this.state.aboutCreate}));
+    this.props.dispatch(usersActions.createUser({id: this.props.nextUserId, name: this.state.nameCreate, about: this.state.aboutCreate}));
     this.setState({nameCreate: '', aboutCreate: ''});
   }
 
