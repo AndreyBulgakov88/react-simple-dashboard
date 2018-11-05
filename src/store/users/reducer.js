@@ -34,3 +34,11 @@ export function getActiveUserId(state) {
 export function getActiveUser(state) { 
   return state.users.userlist[state.users.activeUserId];
 }
+
+export function getNextUserId(state) { 
+  if (state.users.userlist.length === 0) {
+    return 0;
+  }
+
+  return _.max(_.map(state.users.userlist, 'id')) + 1;
+}
