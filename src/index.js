@@ -14,8 +14,9 @@ import requireAuth from './containers/hoc/RequireAuth';
 import requireNotAuth from './containers/hoc/RequireNotAuth';
 import './index.css';
 import * as reducers from './store/reducers';
+import { reducer as formReducer } from 'redux-form';
 
-const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
+const store = createStore(combineReducers({form: formReducer, ...reducers}), applyMiddleware(thunk));
 
 const token = localStorage.getItem('token');
 
