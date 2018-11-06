@@ -10,12 +10,20 @@ export default function reduce(state = initialState, action) {
   switch (action.type) {
     case types.CREATE_USER:
       return {...state, userlist: [...state.userlist, action.userData]}
+    
     case types.SELECT_USER:
       return { ...state, activeUserId: action.userId};
-    
+
     case types.EDIT_USER:
-      return {...state, userlist: state.userlist.map(user => 
-        user.id === action.userData.id ? { ...user, name: action.userData.name, about: action.userData.about } : user)}
+      const userdata = action.userData;
+      return {...state,
+              userlist: state.userlist.map(user => 
+                  user.id === userdata.id 
+                  ? 
+                  { ...user, name: userdata.name, about: userdata.about } 
+                  : 
+                  user)}
+
     default:
       return state;
   }
