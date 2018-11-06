@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Dropdown.css';
 import * as dashboardActions from '../../store/dashboard/actions';
@@ -8,7 +9,7 @@ import UserlistDropdown from '../../components/UserlistDropdown';
 
 class Dropdown extends Component {
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object.isRequired
   };
 
   constructor(props) {

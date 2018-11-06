@@ -1,20 +1,21 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 export default function (ComposedComponent) {
   class NotAuthentication extends Component {
     static contextTypes = {
-      router: PropTypes.object
+      router: PropTypes.object.isRequired
     };
 
-    componentWillMount() {
+    componentDidMount() {
       if (this.props.authenticated) {
         this.context.router.history.push("/settings"); 
       }
     }
-
-    componentWillUpdate(nextProps) {
-      if (nextProps.authenticated) {
+    
+    componentDidUpdate() {
+      if (this.props.authenticated) {
         this.context.router.history.push("/settings"); 
       }
     }

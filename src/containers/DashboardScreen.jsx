@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import autoBind from 'react-autobind';
 import { connect } from 'react-redux';
 import DashboardApis from '../components/DashboardApis';
@@ -8,7 +9,7 @@ import * as usersSelectors from '../store/users/reducer';
 
 class DashboardScreen extends Component {
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -19,10 +20,6 @@ class DashboardScreen extends Component {
   onApiClick(apiId) {
     this.props.dispatch(dashboardActions.selectApi(apiId));
     this.context.router.history.push(`/api/${apiId}`);
-  }
-
-  componentDidMount() {
-   // this.props.dispatch(topicsActions.fetchTopics());
   }
 
   render() {
