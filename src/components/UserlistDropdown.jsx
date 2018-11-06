@@ -1,35 +1,38 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
-import autoBind from 'react-autobind';
+import React from 'react';
 
-export default class UserlistDropdown extends Component {
+let propsSave;
 
-  constructor(props) {
-    super(props);
-    autoBind(this);
+const onUserClick = (userId) => {
+  if (userId === propsSave.activeUserId) return;
+  if (typeof propsSave.onClick === 'function') {
+    propsSave.onClick(userId);
   }
-
-  render() {
-    return (
-      <ul>
-        {_.map(this.props.userlist, this.renderUserById)}
-      </ul>
-    );
-  }
-
-  renderUserById(user) {
-    return (
-      <li key={user.id} onClick={() => this.onUserClick(user.id)} style={user.id === this.props.activeUserId ? {fontWeight: '700'} : {}}>
-        {user.name}
-      </li>
-    );
-  }
-
-  onUserClick(userId) {
-    if (userId === this.props.activeUserId) return;
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick(userId);
-    }
-  }
-
 }
+
+const renderUserById = (user) => {
+  return (
+    <li 
+      key={user.id} 
+      onClick={() => onUserClick(user.id)} 
+      style={user.id === propsSave.activeUserId 
+            ? 
+            {fontWeight: '700'} 
+            : 
+            {}}
+    >
+      {user.name}
+    </li>
+  );
+}
+
+const UserlistDropdown = (props) => {
+  propsSave = props;
+  return (
+    <ul>
+      {_.map(props.userlist, renderUserById)}
+    </ul>
+  );
+}
+
+export default UserlistDropdown
