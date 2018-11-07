@@ -24,6 +24,12 @@ export function fetchApiItems(selectedApiId) {
   };
 }
 
+export function clearApiItems() {
+  return dispatch => {  
+    dispatch({ type: types.CLEAR_API_ITEMS });
+  }
+}
+
 export function selectApi(apiId) {
   return dispatch => {  
     dispatch({ type: types.SELECT_API, apiId });

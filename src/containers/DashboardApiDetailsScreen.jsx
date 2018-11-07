@@ -13,10 +13,12 @@ class DashboardApiDetailsScreen extends Component {
   }
 
   componentDidMount() {
+    this.props.dispatch(dashboardActions.clearApiItems());
     this.props.dispatch(dashboardActions.fetchApiItems(this.props.selectedApi.id));
   }
 
   render() {
+    if (!this.props.apiItems) return this.renderLoading();
     return (
       <div>
         <h3 className="text-center mb-5">{this.props.selectedApi.name}</h3>
@@ -26,6 +28,11 @@ class DashboardApiDetailsScreen extends Component {
     );
   }
 
+  renderLoading() {
+    return (
+      <p>Loading...</p>
+    );
+  }
 }
 
 function mapStateToProps(state, ownProps) {

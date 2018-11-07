@@ -13,6 +13,8 @@ export default function reduce(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_API_ITEMS:
       return { ...state, apiItems: action.apiItems};
+    case types.CLEAR_API_ITEMS:
+      return { ...state, apiItems: undefined};
     case types.SELECT_API:
       return { ...state, selectedApiId: action.apiId}
     case types.SHUFFLE_APIS:
