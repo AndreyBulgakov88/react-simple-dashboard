@@ -1,46 +1,32 @@
-Simple dashboard project, just for training skills.
+React-приложение, реализует простой dashboard, получающий данные из нескольких публично доступных API. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Технологии
+Выполнено с использованием React v.15.3.2, Redux v.4.4.5, Bootstrap v.4.0.0 
 
-## Available Scripts
+## Локальный запуск
+* npm install
+* npm start
+* Для просмотра в браузере введите ссылку [http://localhost:3000](http://localhost:3000)
 
-In the project directory, you can run:
+## Файловая структура проекта
+* Dumb components - /src/components
+* Smart components - /src/containers
+* Services - /src/services
+* Actions, action types, reducers - /src/store
 
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Описание и механизм работы приложения
+1. Авторизация
+  * При первом запуске приложения происходит перенаправление на страницу /login. Для дальнейшей работы требуется авторизация.
+  * Имя пользователя и пароль - непустые произвольные значения. Сочетание "Имя пользователя" + "Пароль" записывается как токен в локальное хранилище. 
+  * При открытии любой страницы приложения проверяется существование токена в локальном хранилище. В случае отсутствия токена происходит перенаправление на страницу /login.
+  * После авторизации становится доступна кнопка Logout, удаляющая токен из локального хранилища.
+2. Страница настроек
+  * После успешной авторизации происходит перенаправление на страницу настроек. 
+  * Для работы с dashboard нужно создать пользователей приложения на странице настроек (поля "Имя пользователя", "Информация о пользователе")
+  * Созданные пользователи доступны для выбора в выпадающем списке в шапке приложения.
+  * После выбора пользователя из выпадающего списка происходит перенаправление на главную страницу с dashboard.
+  * При выбранном пользователе имеется возможность возврата на страницу настроек при нажатии на ссылку в шапке приложения. В этом случае на странице настроек доступны функции создания нового пользователя и редактирования выбранного.
+3. Страница dashboard
+  * На странице показываются карточки 3-х публично доступных API (Dog API, Space X API, Anime API). Каждая карточка состоит из заголовка (название API), описании API, кнопки "Details".
+  * При нажатии на кнопку "Details" для любого из API открывается страница API, на которой происходит загрузка данных из текущего API. В данной реализации приложения загружаются изображения, которые отображаются на странице API.
+  * При выборе нового пользователя из выпадающего списка происходит перенаправление на страницу с карточками API, а сами карточки меняются местами в случайном порядке.
