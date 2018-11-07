@@ -9,8 +9,9 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
     <label>{label}</label>
     <div>
       <input className="form-control" {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span style={{color: 'red', fontWeight: 700}}>{error}</span>) 
-               || (warning && <span style={{color: 'red', fontWeight: 700}}>{warning}</span>))}
+      {touched && 
+        ((error && <span style={{color: 'red', fontWeight: 700}}>{error}</span>) ||
+        (warning && <span style={{color: 'red', fontWeight: 700}}>{warning}</span>))}
     </div>
   </div>
 )

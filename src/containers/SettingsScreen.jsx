@@ -15,39 +15,32 @@ class SettingsScreen extends Component {
       nameEdit: this.props.activeUser === undefined ? '' : this.props.activeUser.name,
       aboutEdit: this.props.activeUser === undefined ? '' : this.props.activeUser.about
     }
-
-    this.handleSubmitCreate = this.handleSubmitCreate.bind(this);
-    this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
-    this.handleNameCreateChange = this.handleNameCreateChange.bind(this);
-    this.handleAboutCreateChange = this.handleAboutCreateChange.bind(this);
-    this.handleNameEditChange = this.handleNameEditChange.bind(this);
-    this.handleAboutEditChange = this.handleAboutEditChange.bind(this);
   }
 
-  handleNameCreateChange(e) {
+  handleNameCreateChange = (e) => {
     this.setState({nameCreate: e.target.value});
   }
 
-  handleAboutCreateChange(e) {
+  handleAboutCreateChange = (e) => {
     this.setState({aboutCreate: e.target.value});
   }
 
-  handleNameEditChange(e) {
+  handleNameEditChange = (e) => {
     this.setState({nameEdit: e.target.value});
   }
 
-  handleAboutEditChange(e) {
+  handleAboutEditChange = (e) => {
     this.setState({aboutEdit: e.target.value});
   }
 
-  handleSubmitCreate(e) {
+  handleSubmitCreate = (e) => {
     e.preventDefault();
 
     this.props.dispatch(usersActions.createUser({id: this.props.nextUserId, name: this.state.nameCreate, about: this.state.aboutCreate}));
     this.setState({nameCreate: '', aboutCreate: ''});
   }
 
-  handleSubmitEdit(e) {  
+  handleSubmitEdit = (e) => {  
     e.preventDefault();
 
     this.props.dispatch(usersActions.editUser({id: this.props.activeUserId, name: this.state.nameEdit, about: this.state.aboutEdit}));

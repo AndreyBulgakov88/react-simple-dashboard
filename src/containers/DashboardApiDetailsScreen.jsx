@@ -17,20 +17,21 @@ class DashboardApiDetailsScreen extends Component {
     this.props.dispatch(dashboardActions.fetchApiItems(this.props.selectedApi.id));
   }
 
+  renderLoading() {
+    return (
+      <p>Loading...</p>
+    );
+  }
+  
   render() {
     if (!this.props.apiItems) return this.renderLoading();
     return (
       <div>
         <h3 className="text-center mb-5">{this.props.selectedApi.name}</h3>
         <DashboardApiItems 
-        apiItems={this.props.apiItems}/>
+          apiItems={this.props.apiItems}
+        />
       </div>
-    );
-  }
-
-  renderLoading() {
-    return (
-      <p>Loading...</p>
     );
   }
 }

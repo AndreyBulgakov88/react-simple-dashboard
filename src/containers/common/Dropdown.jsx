@@ -16,27 +16,22 @@ class Dropdown extends Component {
     super(props);
 
     this.state = { displayMenu: false };
-
-    this.showDropdownMenu = this.showDropdownMenu.bind(this);
-    this.hideDropdownMenu = this.hideDropdownMenu.bind(this);
-    this.onDropdownItemClick = this.onDropdownItemClick.bind(this);
   }
 
-  showDropdownMenu(event) {
-      event.preventDefault();
-      this.setState({ displayMenu: true }, () => {
+  showDropdownMenu = (e) => {
+    e.preventDefault();
+    this.setState({ displayMenu: true }, () => {
       document.addEventListener('click', this.hideDropdownMenu);
-      });
+    });
   }
 
-  hideDropdownMenu() {
+  hideDropdownMenu = () => {
     this.setState({ displayMenu: false }, () => {
       document.removeEventListener('click', this.hideDropdownMenu);
     });
-
   }
 
-  onDropdownItemClick(userId) {
+  onDropdownItemClick = (userId) => {
     this.props.dispatch(dashboardActions.shuffleApis());
     this.props.dispatch(usersActions.selectUser(userId));
     this.context.router.history.push("/");
@@ -44,16 +39,18 @@ class Dropdown extends Component {
 
   render() {
     return (
-        <div  className="dropdown mr-3" style={{}} >
+      <div  className="dropdown mr-3" style={{}} >
         <div className="button" onClick={this.showDropdownMenu}>
           {this.props.activeUserId === undefined ? '<Select user>' : this.props.userlist[this.props.activeUserId].name}
         </div>
-        { this.state.displayMenu ? 
+        { this.state.displayMenu 
+          ? 
           <UserlistDropdown
             userlist={this.props.userlist} 
             activeUserId={this.props.activeUserId}
-            onClick={this.onDropdownItemClick} />
-        :
+            onClick={this.onDropdownItemClick} 
+          />
+          :
           null
         }
       </div>

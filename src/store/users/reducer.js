@@ -17,12 +17,18 @@ export default function reduce(state = initialState, action) {
     case types.EDIT_USER:
       const userdata = action.userData;
       return {...state,
-              userlist: state.userlist.map(user => 
-                  user.id === userdata.id 
-                  ? 
-                  { ...user, name: userdata.name, about: userdata.about } 
-                  : 
-                  user)}
+              userlist: state.userlist.map(user => {
+                  if (user.id === userdata.id) {
+                    return { 
+                      ...user, 
+                      name: userdata.name, 
+                      about: userdata.about 
+                    };
+                  }
+                    
+                  return user;
+                })
+              }
 
     default:
       return state;

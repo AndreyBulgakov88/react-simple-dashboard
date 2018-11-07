@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import autoBind from 'react-autobind';
 import { connect } from 'react-redux';
 import DashboardApis from '../components/DashboardApis';
 import * as dashboardActions from '../store/dashboard/actions';
@@ -12,12 +11,7 @@ class DashboardScreen extends Component {
     router: PropTypes.object.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    autoBind(this);
-  }
-
-  onApiClick(apiId) {
+  onApiClick = (apiId) => {
     this.props.dispatch(dashboardActions.selectApi(apiId));
     this.context.router.history.push(`/api/${apiId}`);
   }

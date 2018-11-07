@@ -6,14 +6,8 @@ import Dropdown from './Dropdown';
 import { NavLink } from 'react-router-dom'
 
 class Header extends Component {
-  
-  constructor(props) {
-    super(props);
 
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-  }
-
-  handleLogoutClick() {
+  handleLogoutClick = () => {
     this.props.dispatch(loginActions.logoutUser());
   }
 
