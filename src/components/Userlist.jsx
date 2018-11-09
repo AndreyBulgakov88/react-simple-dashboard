@@ -1,16 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import './Userlist.css';
-
-
-const renderUserById = (user) => {
-  return (
-    <tr key={user.id}>
-      <td>{user.name}</td>
-      <td>{user.about}</td>
-    </tr>
-  );
-}
+import UserRow from './UserRow';
 
 const Userlist = (props) => {
   return (
@@ -20,7 +11,10 @@ const Userlist = (props) => {
           <th>Name</th>
           <th>About</th>
         </tr>
-        {_.map(props.userlist, renderUserById)}
+        {_.map(props.userlist, (user) => (
+            <UserRow key={user.id} user={user}/>
+          ))
+        }
       </tbody>
     </table>
   );

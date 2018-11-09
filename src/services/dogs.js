@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 class DogsService {
-
+  
   async getDogs() {
     const url = 'https://dog.ceo/api/breed/hound/images/random/9';
 
@@ -24,8 +24,6 @@ class DogsService {
     
     return _.assign({}, items);
   }
-
-  
 }
 
 export default new DogsService();
